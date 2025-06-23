@@ -12,8 +12,6 @@ findMe.addEventListener('click', () => {
         .then((response) => {
             reverseGeocode(response)
                 .then((response) => {
-                console.log(response.address.town,',',response.address.state,',',response.address.country);
-                console.log(response);
                 apiHandler(`${response.address.town},${response.address.state},${response.address.country}`)
                     .then(value => renderContent(value));
                 })

@@ -5,7 +5,7 @@
 
 body {
     display: grid;
-    grid-template-columns: minmax(200px, 300px);
+    grid-template-columns: minmax(250px, 400px);
     justify-content: center;
     align-items: start;
     background-color: #4169e1;
