@@ -4,5 +4,7 @@ import renderContent from "./renderContent";
 
 let data;
 
-apiHandler("Kalamata, Messinia, GR")
+apiHandler("Platy, Messinia, GR")
     .then(value => renderContent(value));
+
+console.log(Geolocation.getCurrentPosition());

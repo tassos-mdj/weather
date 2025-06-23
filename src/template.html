@@ -4,18 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MDj Weather App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="wrapper">
-        <header>
-            <div class="current-temp"></div>
-            <div class="current-icon"></div>
-            <div class="location"></div>
-            <div class="details">
-                <div class="maxmin-info"></div>
-                <div class="datetime-info"></div>
+        <div class="current-temp"></div>
+        <img class="current-icon" />
+        <div class="location"></div>
+        <div class="details">
+            <div class="maxmin-info"></div>
+            <div class="datetime-info"></div>
+        </div>
+        <div class="hourly-wrap">
+            <div class="hourly"></div>
+        </div>
+        <div class="description"></div>
+        <div class="daily"></div>
+        <div class="sun-hours">
+            <div class="rise-set">
+                <span>Sunrise</span>
+                <span id="sunrise-time" class="rise-set-time"></span>
+                <img src="./icons/sunrise.svg" alt="sunrise" class="icon-white">
             </div>
-        </header>
+            <div class="rise-set">
+                <span>Sunset</span>
+                <span id="sunset-time" class="rise-set-time"></span>
+                <img src="./icons/sunset.svg" alt="sunset" class="icon-white">
+            </div>
+        </div>
+        <div class="advanced-info">
+            <div class="uv">
+                <img src="./icons/uv.png" alt="uv">
+                <span>UV index</span>
+                <span id="uv-index"></span>
+            </div>
+            <div class="hum">
+                <img src="./icons/humidity.png" alt="humidity">
+                <span>Humidity</span>
+                <span id="hum-index"></span>
+            </div>
+            <div class="wind">
+                <img src="./icons/wind2.svg" alt="wind" class="icon-white">
+                <span>Wind</span>
+                <span id="wind-index"></span>
+            </div>
+        </div>
     </div>
 </body>
 </html>
