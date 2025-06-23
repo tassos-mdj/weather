@@ -16,6 +16,10 @@ export default function renderContent(data) {
     const humIndex = document.getElementById('hum-index');
     const windIndex = document.getElementById('wind-index');
 
+    hourly.innerHTML = '';
+    daily.innerHTML = '';
+
+
     console.log(data);
 
     currentTemp.textContent = Math.round(data.currentConditions.temp) + '°';
