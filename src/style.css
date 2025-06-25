@@ -12,6 +12,10 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+.hidden {
+    display: none;
+}
+
 .wrapper {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -21,9 +25,9 @@ body {
 }
 
 .current-temp {
-    grid-area: 1 / 1 / 2 / 2;
     font-size: 3.5rem;
     font-weight: 100;
+    grid-area: 1 / 1 / 2 / 2;
 }
 
 .current-icon {
@@ -33,9 +37,41 @@ body {
     max-width: 80%;
 }
 
-.location {
+.location-wrapper {
     grid-area: 2 / 1 / 3 / 3;
+
+}
+
+.location-line, form {
+    display: flex;
+    gap: 0.6rem;    
+    align-items: center;
+}
+
+.location {
     font-size: 1.3rem;
+}
+
+.location-line img {
+    height: 1rem;
+    cursor: pointer;
+}
+
+#search-bar {
+    padding: 0.2rem 0.5rem;
+    border-radius: 15px;
+    border: none;
+    min-width: 0;
+}
+
+.location-line button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#resolved-address {
+    font-size: 0.6rem;
 }
 
 .details {

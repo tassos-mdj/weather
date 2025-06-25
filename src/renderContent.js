@@ -4,6 +4,7 @@ export default function renderContent(data) {
     const currentTemp = document.querySelector('.current-temp');
     const currentIcon = document.querySelector('.current-icon');
     const location = document.querySelector('.location');
+    const resolvedAddress = document.getElementById('resolved-address');
     const details = document.querySelector('.details');
     const maxminInfo = document.querySelector('.maxmin-info');
     const datetimeInfo = document.querySelector('.datetime-info');
@@ -15,39 +16,41 @@ export default function renderContent(data) {
     const uvIndex = document.getElementById('uv-index');
     const humIndex = document.getElementById('hum-index');
     const windIndex = document.getElementById('wind-index');
+    const d = new Date;
+    const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     hourly.innerHTML = '';
     daily.innerHTML = '';
 
-
     console.log(data);
+    !data ? alert("Location not found, please try again") : render(data);
 
+    function render(data){
+    // Display current temprature, icon, location and details
     currentTemp.textContent = Math.round(data.currentConditions.temp) + '°';
-
     let fullLocation = [];
-    fullLocation = data.address.split(', ');
+    fullLocation = data.address.split(',');
+    fullLocation.forEach((item) => item.trim());
     location.textContent = fullLocation[0];
-
+    let resolvedAddressArray = [];
+    resolvedAddressArray = data.resolvedAddress.split(',');
+    resolvedAddressArray.forEach((item) => item.trim());
+    resolvedAddress.textContent = `${resolvedAddressArray[0]}, ${resolvedAddressArray[1]}`;
     const maxTemp = Math.round(data.days[0].tempmax);
     const minTemp = Math.round(data.days[0].tempmin);
     const realFeel = Math.round(data.currentConditions.feelslike);
-
-    const d = new Date;
-    const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const presDay = weekday[d.getDay()].substring(0, 3);
-
     let hm = [];
     hm = data.currentConditions.datetime.split(':');
     const dataTime = `${hm[0]}:${hm[1]}`;
-
     maxminInfo.textContent = `${maxTemp}° / ${minTemp}°  Feels like ${realFeel}°`;
     datetimeInfo.textContent = `${presDay}, ${dataTime}`;
     details.appendChild(maxminInfo);
     details.appendChild(datetimeInfo);
-
     const iconSrc = require(`./icons/${data.currentConditions.icon}.svg`);
     currentIcon.src = iconSrc;
 
+    // Compute and call 12hour forecast iterations
     let currenthour;
     d.getMinutes < 31 ? currenthour = d.getHours() : currenthour = d.getHours() + 1;
  
@@ -91,8 +94,10 @@ export default function renderContent(data) {
 
     }
 
+    // Display verbal desrciption about the forecast
     description.textContent = data.description;
 
+    // Compute and call 7 day forecast
     let renderedDays = 0;
     for (let i = d.getDay(); i < 7; i++) {
         createDayForecast(i, renderedDays);
@@ -139,9 +144,9 @@ export default function renderContent(data) {
         daily.appendChild(dailyForc);
     }
 
+    // Display advanced information
     sunriseTime.textContent = data.currentConditions.sunrise.substring(0, 5);
     sunsetTime.textContent = data.currentConditions.sunset.substring(0, 5);
-
     let currentUVGrading;
     const currentUV = data.currentConditions.uvindex;
     if (currentUV < 3) {currentUVGrading = 'Low'};
@@ -150,8 +155,7 @@ export default function renderContent(data) {
     if (7 < currentUV && currentUV < 11) {currentUVGrading = 'Very High'};
     if (10 < currentUV) {currentUVGrading = 'Extreme'};
     uvIndex.textContent = currentUVGrading;
-
     humIndex.textContent = `${Math.round(data.currentConditions.humidity)} %`;
-
     windIndex.textContent = `${Math.round(data.currentConditions.windgust)} km/h`;
+    }
 }

@@ -12,7 +12,18 @@
     <div class="wrapper">
         <div class="current-temp"></div>
         <img class="current-icon" />
-        <div class="location"></div>
+        <div class="location-wrapper">
+            <div class="location-line">
+                <div class="location"></div>
+                <img src="./icons/map-pin.svg" alt="locate" class="icon-white" id="findme">
+                <form>
+                    <input type="text" name="search-bar" placeholder="City, Area, Country" id="search-bar" class="search hidden">
+                    <button type="submit" class="search hidden"><img src="./icons/search.svg" alt="search" class="icon-white" id="search-submit"></button>
+                </form>
+                <img src="./icons/search.svg" alt="search" class="search icon-white" id="search-button">
+            </div>
+            <div class="location-line" id="resolved-address"></div>
+        </div>
         <div class="details">
             <div class="maxmin-info"></div>
             <div class="datetime-info"></div>
@@ -51,7 +62,7 @@
                 <span id="wind-index"></span>
             </div>
         </div>
-        <button id="findme">Find Me!</button>
+        <!-- <button id="findme">Find Me!</button> -->
     </div>
 </body>
 </html>

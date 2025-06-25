@@ -12,7 +12,7 @@ export function reverseGeocode(coords) {
     let lon = coords[1];
     const apiKey = 'pk.c8db7815124fa4df3af7b91df0de474c';
     const url = `https://us1.locationiq.com/v1/reverse?key=${apiKey}&lat=${lat}&lon=${lon}&format=json`;
-    console.log(getData.url);
+    console.log(getData(url));
     return getData(url);
 }
 
